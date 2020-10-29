@@ -2,6 +2,10 @@ package Model;
 
 import java.util.Date;
 
+import helper.Utils;
+
+
+
 public class Cliente {
 	// codigo do cliente 
 	private static int contador = 101;
@@ -61,5 +65,13 @@ public class Cliente {
 		return this.dataCadastro;
 	}
 	
+	public String toString() {
+		return "Código: " + this.getCodigo() +
+				"\nNome: " + this.getNome() +
+				"nE-mail:" + this.getEmail() +
+				"\nCPF: " + this.getCpf() +
+				"\nData de Nascimento: " + Utils.dateParaString(this.getDataNascimetno()) +
+				"\nData de Cadastro: " + Utils.dateParaString(this.getDataCadastro());
+	}
 
 }
