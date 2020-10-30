@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import helper.Utils;
+import model.Cliente;
 import model.Conta;
 
 public class Banco {
@@ -72,7 +73,35 @@ public class Banco {
 	}
 	
 	public static void criarConta() {
-		System.out.println("Criando conta...");
+		System.out.println("Informe os dados do cliente: ");
+		
+		System.out.println("Nome do cliente: ");
+		String nome = Banco.teclado.nextLine();
+		
+		System.out.println("E-mail do cliente: ");
+		String email = Banco.teclado.nextLine();
+		
+		System.out.println("CPF do cliente: ");
+		String cpf = Banco.teclado.nextLine();
+		
+		System.out.println("Data de nascimento do cliente ");
+		String data_nascimento = Banco.teclado.nextLine();
+		
+		Cliente cliente = new Cliente (nome, email, cpf,  Utils.stringParaData(data_nascimento));
+		
+		Conta conta  = new Conta(cliente);
+		
+		Banco.contas.add(conta);
+		
+		System.out.println("Conta criada com sucesso!");
+		System.out.println("Dados da conta criada: ");
+		System.out.println(conta);
+		System.out.println();
+		
+		Utils.pausar(4);
+		Banco.menu();
+		
+		
 	}
 	public static void efetuarSaque() {
 		System.out.println("Efetuando saque...");
