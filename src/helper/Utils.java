@@ -44,7 +44,7 @@ public class Utils {
 		}
 	}
 	
-	public static void pausat( int segundos) {
+	public static void pausar( int segundos) {
 		try {
 			TimeUnit.SECONDS.sleep(segundos);
 			}catch(InterruptedException e) {
