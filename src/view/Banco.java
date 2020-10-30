@@ -104,15 +104,100 @@ public class Banco {
 		
 	}
 	public static void efetuarSaque() {
-		System.out.println("Efetuando saque...");
+		
+		System.out.println("informe o numero da conta: ");
+		int numero = Banco.teclado.nextInt();
+		
+		Conta conta = Banco.buscarContaPorNumero(numero);
+		
+		if(conta != null ) {
+			System.out.println("Informe o valor para saque: ");
+			Double valor = Banco.teclado.nextDouble();
+			
+			conta.sacar(valor);
+		}else {
+			System.out.println("Não foi encontrada a conta número " + numero);
+		}
+		Utils.pausar(3);
+		Banco.menu();
 	}
 	public static void efetuarDeposito() {
-		System.out.println("Efetuando depósito...");
+		System.out.println("Informe o  núnmero da conta: ");
+		int numero = Banco.teclado.nextInt();
+		
+		Conta conta = Banco.buscarContaPorNumero(numero);
+		
+		if(conta != null) {
+			System.out.println("Informe o valor de depósito: ");
+			Double valor = Banco.teclado.nextDouble();
+			
+			conta.depositar(valor);
+		}else {
+			System.out.println("Não foi encontada a conta número " + numero);
+			
+		}
+		Utils.pausar(3);
+		Banco.menu();
+		
+		
 	}
 	public static void efetuarTransferencia() {
-		System.out.println("Efetuando transferência...");
+		System.out.println("Informe o número da sua conta:");
+		int numero_o = Banco.teclado.nextInt();
+		
+		Conta conta_o = Banco.buscarContaPorNumero(numero_o);
+		
+		if(conta_o != null) {
+			System.out.println("Informe o número da conta destino: ");
+			int numero_d = Banco.teclado.nextInt();
+			
+			Conta conta_d = Banco.buscarContaPorNumero(numero_d);
+			
+			if(conta_d != null) {
+				System.out.println("Informe o valor da transferência: ");
+				Double valor = Banco.teclado.nextDouble();
+				
+				conta_o.transferir(conta_d, valor);
+			} else {
+				System.out.println(" A conta destino número " + numero_d + " não foi encontrada. ");
+			}
+			
+		}else {
+			System.out.println("Não foi encontrada a conta número " + numero_o);
+		}
+		Utils.pausar(3);
+		Banco.menu();
 	}
 	public static void listarContas() {
-		System.out.println("Listando contas...");
+		if(Banco.contas.size() > 0 ) {
+			System.out.println("Listagem de contas");
+			System.out.println();
+			
+			for(Conta conta : Banco.contas) {
+				System.out.println(conta);
+				System.out.println();
+				Utils.pausar(1);
+				
+			}
+			System.out.println();
+		}else {
+			System.out.println("Não existem contas cadastradas ainda. ");
+		}
+		Utils.pausar(3);
+		Banco.menu();
 	}
+	
+	private static Conta buscarContaPorNumero(int numero) {
+		Conta c = null;
+		if(Banco.contas.size() > 0) {
+			for(Conta conta : Banco.contas) {
+				if(conta.getNumero() == numero) {
+				c = conta;
+				
+			}
+		}
+	}
+	return c;
+ }
+	
 }
